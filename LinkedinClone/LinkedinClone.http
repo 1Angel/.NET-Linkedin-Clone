@@ -1,0 +1,6 @@
+@LinkedinClone_HostAddress = http://localhost:5242
+
+GET {{LinkedinClone_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
