@@ -33,7 +33,7 @@ namespace LinkedinClone.Repositories
                 Directory.CreateDirectory(folder);
             }
 
-            var fileName = $"{new Guid()}-{createJobApplicationDto.CurriculumUrl.FileName}";
+            var fileName = $"{Guid.NewGuid()}-{createJobApplicationDto.CurriculumUrl.FileName}";
 
             var cvFilePath = Path.Combine(folder, fileName);
 

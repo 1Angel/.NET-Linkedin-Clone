@@ -2,6 +2,7 @@
 using LinkedinClone.Dtos;
 using LinkedinClone.Models;
 using LinkedinClone.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LinkedinClone.Controllers
@@ -113,6 +114,15 @@ namespace LinkedinClone.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+
+
+        [HttpGet("hola")]
+        [Authorize(Roles ="admin")]
+        public string Saludo()
+        {
+            return "hola que tal, solo los admin pueden ver esto";
         }
     }
 }
