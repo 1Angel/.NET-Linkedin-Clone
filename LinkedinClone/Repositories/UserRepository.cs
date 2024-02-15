@@ -112,17 +112,12 @@ namespace LinkedinClone.Repositories
                     };
                 }
             }
-
-            //roles
-            if(!await _roleManager.RoleExistsAsync(UserRoles.User))
-            {
-                await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
-            }
             if(await _roleManager.RoleExistsAsync(UserRoles.User))
             {
                 await _userManager.AddToRoleAsync(user, UserRoles.User);
             }
-            //
+            
+            
 
 
             //jwttoken

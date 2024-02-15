@@ -46,6 +46,10 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+//seed admin
+builder.Services.AddHostedService(provider =>
+    ActivatorUtilities.CreateInstance<SeedAdmin>(provider.CreateScope().ServiceProvider)
+);
 
 //automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
