@@ -58,6 +58,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IJobPostRepository, JobPostRepository>();
 builder.Services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();  
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<iUserProvider, UserProvider>();
 
 
 var app = builder.Build();

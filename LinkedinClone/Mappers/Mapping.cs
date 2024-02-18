@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LinkedinClone.Dtos;
 using LinkedinClone.Dtos.JobApplication;
+using LinkedinClone.Dtos.User;
 using LinkedinClone.Models;
 
 namespace LinkedinClone.Mappers
@@ -19,6 +20,10 @@ namespace LinkedinClone.Mappers
 
             //job-application mapping
             CreateMap<JobApplication, JobApplicationDto>();
+
+
+            //user
+            CreateMap<User, UserDto>();
         }
     }
 }

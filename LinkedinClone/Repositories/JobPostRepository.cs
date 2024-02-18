@@ -14,8 +14,9 @@ namespace LinkedinClone.Repositories
             _environment = environment;
             _context = context;
         }
-        public async Task<JobPost> CreateJobPost(JobPost jobPost)
+        public async Task<JobPost> CreateJobPost(JobPost jobPost, string UserId)
         {
+            jobPost.UserId = UserId;
             var create = await _context.JobPosts.AddAsync(jobPost);
             _context.SaveChanges();
             return create.Entity;
@@ -39,7 +40,7 @@ namespace LinkedinClone.Repositories
 
         public async Task<JobPost> GetById(int id)
         {
-            var jobId = await _context.JobPosts.Include(x=>x.JobsApplication).FirstOrDefaultAsync(x => x.Id == id);
+            var jobId = await _context.JobPosts.Include(x=>x.JobsApplication).Include(a=>a.User).FirstOrDefaultAsync(x => x.Id == id);
             return jobId;
         }
 

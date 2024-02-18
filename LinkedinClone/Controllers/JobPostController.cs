@@ -13,10 +13,12 @@ namespace LinkedinClone.Controllers
     {
         private readonly IJobPostRepository _jobpostRepository;
         private readonly IMapper _mapper;
-        public JobPostController(IJobPostRepository jobPostRepository, IMapper mapper)
+        private readonly iUserProvider _userprovider;
+        public JobPostController(IJobPostRepository jobPostRepository, IMapper mapper, iUserProvider userprovider)
         {
             _jobpostRepository = jobPostRepository;
             _mapper = mapper;
+            _userprovider = userprovider;
         }
 
         [HttpPost("create")]
@@ -24,9 +26,10 @@ namespace LinkedinClone.Controllers
         {
             try
             {
+                var userId = _userprovider.UserId();
                 var jobPost = _mapper.Map<JobPost>(createJobPostDto);
 
-                var save = await _jobpostRepository.CreateJobPost(jobPost);
+                var save = await _jobpostRepository.CreateJobPost(jobPost, userId);
                 return Ok(save);
             }
             catch (Exception ex)
@@ -123,6 +126,15 @@ namespace LinkedinClone.Controllers
         public string Saludo()
         {
             return "hola que tal, solo los admin pueden ver esto";
+        }
+
+
+        [HttpGet("prueba")]
+        [Authorize]
+        public string probandoContext()
+        {
+            var userid = _userprovider.UserId();
+            return userid;
         }
     }
 }
