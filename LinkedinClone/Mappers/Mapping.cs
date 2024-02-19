@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using LinkedinClone.Dtos;
 using LinkedinClone.Dtos.JobApplication;
+using LinkedinClone.Dtos.JobPost;
 using LinkedinClone.Dtos.User;
 using LinkedinClone.Models;
 

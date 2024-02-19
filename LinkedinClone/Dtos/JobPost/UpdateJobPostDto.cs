@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LinkedinClone.Dtos
+namespace LinkedinClone.Dtos.JobPost
 {
-    public class CreateJobPostDto
+    public class UpdateJobPostDto
     {
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string Title { get; set; }
         [Required]
         [MaxLength(1000)]

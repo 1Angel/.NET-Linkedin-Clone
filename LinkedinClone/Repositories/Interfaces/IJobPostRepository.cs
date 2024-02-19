@@ -1,4 +1,5 @@
-﻿using LinkedinClone.Models;
+﻿using LinkedinClone.Dtos;
+using LinkedinClone.Models;
 
 namespace LinkedinClone.Repositories.Interfaces
 {
@@ -7,7 +8,7 @@ namespace LinkedinClone.Repositories.Interfaces
         Task<JobPost> CreateJobPost(JobPost jobPost, string UserId);
         Task<List<JobPost>> Get();
         Task<JobPost> GetById(int id);
-        Task<JobPost> UpdateJobPost(JobPost jobPost, int id);
-        Task DeleteJobPost(int id);
+        Task<ResponseDto> UpdateJobPost(JobPost jobPost, int id, string UserId);
+        Task<ResponseDto> DeleteJobPost(int id, string UserId);
     }
 }

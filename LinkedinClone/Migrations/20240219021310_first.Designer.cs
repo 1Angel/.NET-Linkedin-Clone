@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LinkedinClone.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240215020224_first")]
+    [Migration("20240219021310_first")]
     partial class first
     {
         /// <inheritdoc />

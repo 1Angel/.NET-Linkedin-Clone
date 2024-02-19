@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using LinkedinClone.Dtos;
+using LinkedinClone.Dtos.JobPost;
 using LinkedinClone.Models;
 using LinkedinClone.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -83,13 +83,15 @@ namespace LinkedinClone.Controllers
 
 
         [HttpPut("update/{id}")]
+        [Authorize]
         public async Task<ActionResult> Update([FromBody] UpdateJobPostDto updateJobPostDto, [FromRoute] int id)
         {
             try
             {
+                var UserId = _userprovider.UserId();
                 var jobPost = _mapper.Map<JobPost>(updateJobPostDto);
 
-                var update = await _jobpostRepository.UpdateJobPost(jobPost, id);
+                var update = await _jobpostRepository.UpdateJobPost(jobPost, id, UserId);
                 return Ok(update);
             }
             catch (Exception ex)
@@ -101,16 +103,18 @@ namespace LinkedinClone.Controllers
 
 
         [HttpDelete("delete/{id}")]
+        [Authorize]
         public async Task<ActionResult> Delete([FromRoute] int id)
         {
             try
             {
+                var UserId = _userprovider.UserId();
                 var jobpostId = await _jobpostRepository.GetById(id);
                 if (jobpostId == null)
                 {
                     return NotFound();
                 }
-                await _jobpostRepository.DeleteJobPost(id);
+                await _jobpostRepository.DeleteJobPost(id, UserId);
                 return Ok();
             }
             catch(Exception ex)
