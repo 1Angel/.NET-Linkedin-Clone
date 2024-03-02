@@ -45,5 +45,30 @@ namespace LinkedinClone.Controllers
             }
             return Ok(jobAppid);
         }
+
+
+        [Authorize]
+        [HttpDelete("delete/{id}")]
+        public async Task<ActionResult> Delete([FromRoute] int id)
+        {
+            try
+            {
+                var userId = _userProvider.UserId();
+                var jobAppId = await _jobApplicationRepository.GetById(id);
+                if(jobAppId == null)
+                {
+                    return NotFound();
+                }
+
+                var jobApp = await _jobApplicationRepository.Delete(id, userId);
+                return Ok(jobApp);
+                
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

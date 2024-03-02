@@ -1,4 +1,5 @@
 ﻿using LinkedinClone.Data;
+using LinkedinClone.Dtos;
 using LinkedinClone.Dtos.JobApplication;
 using LinkedinClone.Models;
 using LinkedinClone.Repositories.Interfaces;
@@ -53,6 +54,29 @@ namespace LinkedinClone.Repositories
             var save = await _context.JobApplications.AddAsync(jobApplication);
             await _context.SaveChangesAsync();
             return save.Entity;
+        }
+
+        public async Task<ResponseDto> Delete(int id, string userId)
+        {
+            var jobAppId = await _context.JobApplications.FirstOrDefaultAsync(x => x.Id == id);
+
+             if(jobAppId.UserId != userId)
+            {
+                return new ResponseDto()
+                {
+                    Message = "You're not the creator of this Job-Application",
+                    StatusCode = StatusCodes.Status401Unauthorized
+                };
+            }
+
+            _context.JobApplications.Remove(jobAppId);
+            await _context.SaveChangesAsync();
+            return new ResponseDto()
+            {
+                Message = "Job Application Deleted",
+                StatusCode = StatusCodes.Status200OK
+            };
+
         }
 
         public async Task<JobApplication> GetById(int id)
