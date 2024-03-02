@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LinkedinClone.Dtos.JobApplication;
 using LinkedinClone.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LinkedinClone.Controllers
@@ -11,19 +12,22 @@ namespace LinkedinClone.Controllers
     {
         private readonly IJobApplicationRepository _jobApplicationRepository;
         private readonly IMapper _mapper;
+        private readonly iUserProvider _userProvider;
 
 
-
-        public JobApplicationController(IJobApplicationRepository jobApplicationRepository, IMapper mapper)
+        public JobApplicationController(IJobApplicationRepository jobApplicationRepository, IMapper mapper, iUserProvider  userProvider)
         {
+            _userProvider = userProvider;
             _jobApplicationRepository = jobApplicationRepository;
             _mapper = mapper;
         }
 
+        [Authorize]
         [HttpPost("create/{id}")]
         public async Task<ActionResult> CreateJobApp([FromForm] CreateJobApplicationDto createJobApplicationDto, [FromRoute] int id)
         {
-            var jobApplication = await _jobApplicationRepository.Create(createJobApplicationDto, id);
+            var userId = _userProvider.UserId();
+            var jobApplication = await _jobApplicationRepository.Create(createJobApplicationDto, id, userId);
 
             var joba = _mapper.Map<JobApplicationDto>(jobApplication);
 

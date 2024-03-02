@@ -5,7 +5,7 @@ namespace LinkedinClone.Repositories.Interfaces
 {
     public interface IJobApplicationRepository
     {
-        Task<JobApplication> Create(CreateJobApplicationDto createJobApplicationDto, int id);
+        Task<JobApplication> Create(CreateJobApplicationDto createJobApplicationDto, int id, string userId);
         Task<JobApplication> GetById(int id);
     }
 }

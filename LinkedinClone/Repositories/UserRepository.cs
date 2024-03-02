@@ -57,7 +57,7 @@ namespace LinkedinClone.Repositories
             {
                 return new AuthResponseDto()
                 {
-                    Message = $"User with the email ${loginUserDto.Email} not exist",
+                    Message = $"User with the email {loginUserDto.Email} not exist",
                     Status = StatusCodes.Status400BadRequest
                 };
             }
@@ -90,7 +90,7 @@ namespace LinkedinClone.Repositories
                 return new AuthResponseDto()
                 {
                     Status = StatusCodes.Status400BadRequest,
-                    Message = $"User with the email ${registerUserDto.Email} already exists"
+                    Message = $"User with the email {registerUserDto.Email} already exists"
                 };
             }
 

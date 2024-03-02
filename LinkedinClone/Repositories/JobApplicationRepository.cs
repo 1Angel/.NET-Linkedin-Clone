@@ -17,7 +17,7 @@ namespace LinkedinClone.Repositories
             _webHostEnvironment = webHostEnvironment;
             _jobPostRepository = jobPostRepository;
         }
-        public async Task<JobApplication> Create(CreateJobApplicationDto createJobApplicationDto, int id)
+        public async Task<JobApplication> Create(CreateJobApplicationDto createJobApplicationDto, int id, string userId)
         {
 
             var findJobById = await _jobPostRepository.GetById(id);
@@ -47,6 +47,7 @@ namespace LinkedinClone.Repositories
                 Description = createJobApplicationDto.Description,
                 CurriculumUrl = cvFilePath,
                 JobPostId = id,
+                UserId = userId,
             };
 
             var save = await _context.JobApplications.AddAsync(jobApplication);

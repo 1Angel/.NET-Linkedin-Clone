@@ -55,7 +55,7 @@ namespace LinkedinClone.Repositories
 
         public async Task<JobPost> GetById(int id)
         {
-            var jobId = await _context.JobPosts.Include(x=>x.JobsApplication).Include(a=>a.User).FirstOrDefaultAsync(x => x.Id == id);
+            var jobId = await _context.JobPosts.Include(x=>x.JobsApplication).ThenInclude(x=>x.User).Include(a=>a.User).FirstOrDefaultAsync(x => x.Id == id);
             return jobId;
         }
 
