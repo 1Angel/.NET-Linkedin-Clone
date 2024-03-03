@@ -26,7 +26,7 @@ namespace LinkedinClone.Repositories
         public async Task<ResponseDto> DeleteJobPost(int id, string UserId)
         {
             var jobPostid = await _context.JobPosts.FirstOrDefaultAsync(x=>x.Id == id);
-            if(jobPostid.User.Id != UserId)
+            if(jobPostid.UserId != UserId)
             {
                 return new ResponseDto()
                 {

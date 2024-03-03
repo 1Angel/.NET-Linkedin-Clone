@@ -21,12 +21,9 @@ namespace LinkedinClone.Repositories
         public async Task<JobApplication> Create(CreateJobApplicationDto createJobApplicationDto, int id, string userId)
         {
 
-            var findJobById = await _jobPostRepository.GetById(id);
-            if (findJobById == null)
-            {
-                throw new Exception();
-            }
-
+            //var findJobById = await _jobPostRepository.GetById(id);
+ 
+            
 
             var folder = Path.Combine(_webHostEnvironment.ContentRootPath, "cvfiles");
             if (!Directory.Exists(folder))
