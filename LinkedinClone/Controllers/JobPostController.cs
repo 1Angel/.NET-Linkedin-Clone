@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LinkedinClone.Dtos;
 using LinkedinClone.Dtos.JobPost;
 using LinkedinClone.Models;
 using LinkedinClone.Repositories.Interfaces;
@@ -40,11 +41,11 @@ namespace LinkedinClone.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult> Get()
+        public async Task<ActionResult> Get([FromQuery] FilterDto filterDto)
         {
             try
             {
-                var post = await _jobpostRepository.Get();
+                var post = await _jobpostRepository.Get(filterDto);
                 if (post == null)
                 {
                     return BadRequest();

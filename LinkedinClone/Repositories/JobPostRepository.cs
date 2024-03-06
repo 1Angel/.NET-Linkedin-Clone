@@ -47,9 +47,18 @@ namespace LinkedinClone.Repositories
             };
         }
         
-        public async Task<List<JobPost>> Get()
+        public async Task<List<JobPost>> Get(FilterDto filterDto)
         {
-            var post = await _context.JobPosts.ToListAsync();
+            var queryable = _context.JobPosts.AsQueryable();
+
+            if (!string.IsNullOrEmpty(filterDto.title))
+            {
+                queryable = queryable.Where(x=>x.Title.Contains(filterDto.title));
+            }
+
+            queryable = queryable.Skip((filterDto.PageNumber - 1) * filterDto.PageSize).Take(filterDto.PageSize);
+
+            var post = await queryable.ToListAsync();
             return post;
         }
 
