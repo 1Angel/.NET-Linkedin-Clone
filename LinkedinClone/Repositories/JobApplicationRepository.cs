@@ -81,5 +81,12 @@ namespace LinkedinClone.Repositories
             var jobAppid = await _context.JobApplications.FirstOrDefaultAsync(x=>x.Id == id);
             return jobAppid;
         }
+
+
+        public async Task<List<JobApplication>> GetJobsAppByUser(string userId)
+        {
+            var jobsAppUser = await _context.JobApplications.Where(x=>x.UserId == userId).ToListAsync();
+            return jobsAppUser;
+        }
     }
 }

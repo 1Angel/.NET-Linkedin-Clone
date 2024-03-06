@@ -8,7 +8,8 @@ namespace LinkedinClone.Repositories.Interfaces
     {
         Task<JobApplication> Create(CreateJobApplicationDto createJobApplicationDto, int id, string userId);
         Task<ResponseDto> Delete(int id, string userId);
-
         Task<JobApplication> GetById(int id);
+        
+        Task<List<JobApplication>> GetJobsAppByUser(string userId);
     }
 }

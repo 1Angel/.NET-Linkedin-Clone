@@ -70,5 +70,20 @@ namespace LinkedinClone.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [Authorize]
+        [HttpGet("applications")]
+        public async Task<ActionResult<JobApplicationDto>> GetJobsAppByUser()
+        {
+            var userId = _userProvider.UserId();
+            var jobAppByUser = await _jobApplicationRepository.GetJobsAppByUser(userId);
+            if(jobAppByUser == null)
+            {
+                return NotFound();
+            }
+
+            var JobApps = _mapper.Map<List<JobApplicationDto>>(jobAppByUser);
+            return Ok(JobApps);
+        }
     }
 }
