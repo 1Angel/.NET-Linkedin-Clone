@@ -1,4 +1,5 @@
-﻿using LinkedinClone.Dtos.User;
+﻿using AutoMapper;
+using LinkedinClone.Dtos.User;
 using LinkedinClone.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,15 @@ namespace LinkedinClone.Controllers
     public class AuthController: ControllerBase
     {
         private readonly IUserRepository _userRepository;
-        public AuthController(IUserRepository userRepository)
+        private readonly iUserProvider _userProvider;
+
+        private readonly IMapper _mapper;
+
+        public AuthController(IUserRepository userRepository, iUserProvider userProvider, IMapper mapper)
         {
+            _mapper = mapper;
             _userRepository = userRepository;
+            _userProvider = userProvider;
         }
 
         [HttpPost("register")]
@@ -37,6 +44,18 @@ namespace LinkedinClone.Controllers
                 return BadRequest();
             }
             return Ok(loggedIn);
+        }
+
+        [Authorize]
+        [HttpGet("profile")]
+        public async Task<ActionResult> UserProfile()
+        {
+            var userId = _userProvider.UserId();
+            var user = await _userRepository.UserProfile(userId);
+
+            var userua = _mapper.Map<UserProfileDto>(user);
+
+            return Ok(userua);
         }
     }
 }

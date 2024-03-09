@@ -10,6 +10,7 @@ namespace LinkedinClone.Data
         {
             
         }
+        public DbSet<User> users { get; set; }  
         public DbSet<JobPost> JobPosts { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
         public DbSet<Skills> Skills { get; set; }

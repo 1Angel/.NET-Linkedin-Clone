@@ -1,7 +1,9 @@
-﻿using LinkedinClone.Dtos.User;
+﻿using LinkedinClone.Data;
+using LinkedinClone.Dtos.User;
 using LinkedinClone.Models;
 using LinkedinClone.Repositories.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,12 +17,15 @@ namespace LinkedinClone.Repositories
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
-        
-        public UserRepository(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+
+        private readonly AppDbContext _context;
+
+        public UserRepository(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, AppDbContext context)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
+            _context = context;
         }
 
         public async Task<string> GeneratedToken(User user)
@@ -131,6 +136,15 @@ namespace LinkedinClone.Repositories
             };
 
 
+        }
+
+        public async Task<User> UserProfile(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            var userinfo = await _context.users.Where(x=>x.Id == userId).Include(x => x.JobPosts).Include(x => x.JobApplications).Include(x=>x.Skills).FirstOrDefaultAsync();
+
+            return userinfo;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace LinkedinClone.Repositories.Interfaces
     {
         Task<AuthResponseDto> Register(RegisterUserDto registerUserDto);
         Task<AuthResponseDto> Login(LoginUserDto loginUserDto);
-
+        Task<User> UserProfile(string userId);
         Task<string> GeneratedToken(User user);
     }
 }

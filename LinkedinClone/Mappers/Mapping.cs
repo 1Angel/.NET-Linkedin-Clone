@@ -4,6 +4,7 @@ using LinkedinClone.Dtos.JobPost;
 using LinkedinClone.Dtos.Skills;
 using LinkedinClone.Dtos.User;
 using LinkedinClone.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace LinkedinClone.Mappers
 {
@@ -27,8 +28,13 @@ namespace LinkedinClone.Mappers
             CreateMap<User, UserDto>();
 
 
+            CreateMap<User, UserProfileDto>();
+
+
             //skills
             CreateMap<CreateSkillDto, Skills>();
+
+            CreateMap<Skills, SkillsDto>();
         }
     }
 }
