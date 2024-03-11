@@ -61,7 +61,7 @@ builder.Services.AddScoped<IJobApplicationRepository, JobApplicationRepository>(
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<iUserProvider, UserProvider>();
 builder.Services.AddScoped<ISkillsRepository, SkillsRepository>();
-
+builder.Services.AddScoped<IEducationRepository, EducationRepository>();
 
 
 

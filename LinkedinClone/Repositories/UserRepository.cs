@@ -141,7 +141,7 @@ namespace LinkedinClone.Repositories
         //user profile 
         public async Task<User> UserProfile(string userId)
         {
-            var userinfo = await _context.users.Where(x=>x.Id == userId).Include(x => x.JobPosts).Include(x => x.JobApplications).Include(x=>x.Skills).FirstOrDefaultAsync();
+            var userinfo = await _context.users.Where(x=>x.Id == userId).Include(x => x.JobPosts).Include(x => x.JobApplications).Include(x=>x.Educations).Include(x=>x.Skills).FirstOrDefaultAsync();
 
             return userinfo;
         }

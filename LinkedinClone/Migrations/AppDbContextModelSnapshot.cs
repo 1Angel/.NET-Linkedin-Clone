@@ -17,6 +17,33 @@ namespace LinkedinClone.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
 
+            modelBuilder.Entity("LinkedinClone.Models.Education", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Educations");
+                });
+
             modelBuilder.Entity("LinkedinClone.Models.JobApplication", b =>
                 {
                     b.Property<int>("Id")
@@ -291,6 +318,17 @@ namespace LinkedinClone.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("LinkedinClone.Models.Education", b =>
+                {
+                    b.HasOne("LinkedinClone.Models.User", "User")
+                        .WithMany("Educations")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("LinkedinClone.Models.JobApplication", b =>
                 {
                     b.HasOne("LinkedinClone.Models.JobPost", "JobPost")
@@ -390,6 +428,8 @@ namespace LinkedinClone.Migrations
 
             modelBuilder.Entity("LinkedinClone.Models.User", b =>
                 {
+                    b.Navigation("Educations");
+
                     b.Navigation("JobApplications");
 
                     b.Navigation("JobPosts");

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LinkedinClone")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72493d0480aac0cee30e46044f9d7db4ad80a0b1")]
 [assembly: System.Reflection.AssemblyProductAttribute("LinkedinClone")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LinkedinClone")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

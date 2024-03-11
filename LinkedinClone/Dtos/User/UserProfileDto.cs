@@ -1,4 +1,5 @@
-﻿using LinkedinClone.Dtos.JobApplication;
+﻿using LinkedinClone.Dtos.Education;
+using LinkedinClone.Dtos.JobApplication;
 using LinkedinClone.Dtos.JobPost;
 using LinkedinClone.Dtos.Skills;
 
@@ -11,7 +12,7 @@ namespace LinkedinClone.Dtos.User
         public string Email { get; set; }   
         public List<JobPostDto> JobPosts { get; set; }
         public List<JobApplicationDto> JobApplications { get; set; }
-
+        public List<EducationDto> Educations { get; set; }
         public List<SkillsDto> Skills { get; set; }
     }
 }

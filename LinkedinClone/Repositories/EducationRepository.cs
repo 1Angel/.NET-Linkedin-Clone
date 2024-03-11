@@ -26,6 +26,15 @@ namespace LinkedinClone.Repositories
         {
             var educationId = await _context.Educations.FirstOrDefaultAsync(x => x.Id == id);
 
+            if (educationId == null) {
+                return new ResponseDto()
+                {
+                    StatusCode = StatusCodes.Status404NotFound
+
+                };
+
+            }
+
             if(educationId.UserId != UserId)
             {
                 return new ResponseDto()
