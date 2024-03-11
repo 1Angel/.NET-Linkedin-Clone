@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LinkedinClone.Dtos.Education;
 using LinkedinClone.Dtos.JobApplication;
 using LinkedinClone.Dtos.JobPost;
 using LinkedinClone.Dtos.Skills;
@@ -17,8 +18,8 @@ namespace LinkedinClone.Mappers
 
             CreateMap<JobPost, JobPostDto>();
 
-
             CreateMap<UpdateJobPostDto, JobPost>();
+
 
             //job-application mapping
             CreateMap<JobApplication, JobApplicationDto>();
@@ -26,15 +27,22 @@ namespace LinkedinClone.Mappers
 
             //user
             CreateMap<User, UserDto>();
-
-
             CreateMap<User, UserProfileDto>();
+
 
 
             //skills
             CreateMap<CreateSkillDto, Skills>();
 
             CreateMap<Skills, SkillsDto>();
+
+
+
+            //education
+            CreateMap<CreateEducationDto, Education>();
+
+            CreateMap<Education,  EducationDto>();  
+
         }
     }
 }

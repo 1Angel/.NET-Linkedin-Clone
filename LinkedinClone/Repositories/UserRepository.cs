@@ -138,10 +138,9 @@ namespace LinkedinClone.Repositories
 
         }
 
+        //user profile 
         public async Task<User> UserProfile(string userId)
         {
-            var user = await _userManager.FindByIdAsync(userId);
-
             var userinfo = await _context.users.Where(x=>x.Id == userId).Include(x => x.JobPosts).Include(x => x.JobApplications).Include(x=>x.Skills).FirstOrDefaultAsync();
 
             return userinfo;
