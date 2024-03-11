@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LinkedinClone.Validations;
+using System.ComponentModel.DataAnnotations;
 
 namespace LinkedinClone.Dtos.JobApplication
 {
@@ -8,6 +9,7 @@ namespace LinkedinClone.Dtos.JobApplication
         [MaxLength(255)]
         public string Description { get; set; }
         [Required]
+        [FileTypeValidation]
         public IFormFile CurriculumUrl { get; set; }
     }
 }
