@@ -11,19 +11,17 @@ namespace LinkedinClone.Repositories
     {
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IJobPostRepository _jobPostRepository;
-        public JobApplicationRepository(AppDbContext context, IWebHostEnvironment webHostEnvironment, IJobPostRepository jobPostRepository)
+        public JobApplicationRepository(AppDbContext context, IWebHostEnvironment webHostEnvironment, IJobPostRepository jobPostRepository, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
             _jobPostRepository = jobPostRepository;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<JobApplication> Create(CreateJobApplicationDto createJobApplicationDto, int id, string userId)
         {
-
-            //var findJobById = await _jobPostRepository.GetById(id);
- 
-            
 
             var folder = Path.Combine(_webHostEnvironment.ContentRootPath, "cvfiles");
             if (!Directory.Exists(folder))
@@ -31,19 +29,22 @@ namespace LinkedinClone.Repositories
                 Directory.CreateDirectory(folder);
             }
 
-            var fileName = $"{Guid.NewGuid()}-{createJobApplicationDto.CurriculumUrl.FileName}";
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(createJobApplicationDto.CurriculumUrl.FileName)}";
 
             var cvFilePath = Path.Combine(folder, fileName);
 
             using(FileStream fileStream = new FileStream(cvFilePath, FileMode.Create))
             {
-                fileStream.CopyToAsync(fileStream);   
+                 createJobApplicationDto.CurriculumUrl.CopyTo(fileStream);   
             }
+
+            var AppUrl = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}";
+            var FileUrlDB = Path.Combine(AppUrl, "cvfiles", fileName).Replace("\\", "/");
 
             var jobApplication = new JobApplication()
             {
                 Description = createJobApplicationDto.Description,
-                CurriculumUrl = cvFilePath,
+                CurriculumUrl = FileUrlDB,
                 JobPostId = id,
                 UserId = userId,
             };
