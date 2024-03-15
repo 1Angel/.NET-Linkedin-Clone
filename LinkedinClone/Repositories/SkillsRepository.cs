@@ -1,4 +1,5 @@
 ﻿using LinkedinClone.Data;
+using LinkedinClone.Dtos;
 using LinkedinClone.Models;
 using LinkedinClone.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -21,13 +22,27 @@ namespace LinkedinClone.Repositories
 
         }
 
-        public async void Delete(int id, string userId)
+        public async Task<ResponseDto> Delete(int id, string userId)
         {
-            var skillId = await _dbcontext.Skills.Where(x=>x.Id == id && x.UserId == userId).FirstOrDefaultAsync();
-            
-             _dbcontext.Skills.Remove(skillId);
+            var skillId = await _dbcontext.Skills.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            if(skillId.UserId !=  userId)
+            {
+                return new ResponseDto()
+                {
+                    StatusCode = StatusCodes.Status403Forbidden
+                };
+            }
+
+            _dbcontext.Skills.Remove(skillId);
             await _dbcontext.SaveChangesAsync();
 
+
+            return new ResponseDto()
+            {
+                Message = "Skill deleted",
+                StatusCode = StatusCodes.Status200OK
+            };
 
         }
         public async Task<Skills> GetById(int id)

@@ -1,4 +1,5 @@
-﻿using LinkedinClone.Models;
+﻿using LinkedinClone.Dtos;
+using LinkedinClone.Models;
 
 namespace LinkedinClone.Repositories.Interfaces
 {
@@ -6,7 +7,7 @@ namespace LinkedinClone.Repositories.Interfaces
     {
         Task<Skills> Create(Skills skills, string userId);
         Task<Skills> GetById(int id);
-        void Delete(int id, string userId);
+        Task<ResponseDto> Delete(int id, string userId);
 
     }
 }
