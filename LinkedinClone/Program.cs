@@ -65,7 +65,10 @@ builder.Services.AddScoped<ISkillsRepository, SkillsRepository>();
 builder.Services.AddScoped<IEducationRepository, EducationRepository>();
 
 
-
+builder.Services.AddOutputCache(options =>
+{
+    options.AddBasePolicy(x => x.Expire(TimeSpan.FromMinutes(10)));
+});  
 
 var app = builder.Build();
 
@@ -81,6 +84,9 @@ app.UseStaticFiles(new StaticFileOptions
     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "cvfiles")),
     RequestPath = "/cvfiles"
 });
+
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 
