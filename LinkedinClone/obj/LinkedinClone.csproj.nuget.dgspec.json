@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lenovo\\source\\repos\\LinkedinClone\\LinkedinClone\\LinkedinClone.csproj": {}
+    "C:\\Users\\iAnge\\Source\\Repos\\LinkedinClone\\LinkedinClone\\LinkedinClone.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lenovo\\source\\repos\\LinkedinClone\\LinkedinClone\\LinkedinClone.csproj": {
+    "C:\\Users\\iAnge\\Source\\Repos\\LinkedinClone\\LinkedinClone\\LinkedinClone.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lenovo\\source\\repos\\LinkedinClone\\LinkedinClone\\LinkedinClone.csproj",
+        "projectUniqueName": "C:\\Users\\iAnge\\Source\\Repos\\LinkedinClone\\LinkedinClone\\LinkedinClone.csproj",
         "projectName": "LinkedinClone",
-        "projectPath": "C:\\Users\\lenovo\\source\\repos\\LinkedinClone\\LinkedinClone\\LinkedinClone.csproj",
-        "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lenovo\\source\\repos\\LinkedinClone\\LinkedinClone\\obj\\",
+        "projectPath": "C:\\Users\\iAnge\\Source\\Repos\\LinkedinClone\\LinkedinClone\\LinkedinClone.csproj",
+        "packagesPath": "C:\\Users\\iAnge\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\iAnge\\Source\\Repos\\LinkedinClone\\LinkedinClone\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\iAnge\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -94,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
